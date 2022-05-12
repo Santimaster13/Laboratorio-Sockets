@@ -27,7 +27,8 @@ public class Cliente {
 
     public void Connect_to_Server(String ip, int port){
         try {
-            clientSocket = new Socket(ip, port);
+                    InetAddress address = InetAddress.getByName(ip);
+            clientSocket = new Socket(address, port);
             out = new PrintWriter(clientSocket.getOutputStream(), true);
             in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
         } catch (Exception e) {
@@ -37,7 +38,7 @@ public class Cliente {
     
     public void Operacion(){
         try {
-            System.out.println("Connection Succesful");
+            
             vector = new ArrayList<Integer>();
             String tam = in.readLine();
             int tamaño = Integer.parseInt(tam);
@@ -46,6 +47,7 @@ public class Cliente {
             }
             int opcion = Integer.parseInt(in.readLine());
             int pivote = Integer.parseInt(in.readLine());
+            System.out.println("Connection Succesful");
             long startTime = System.nanoTime();      
             if(opcion == 1){
                 Mergesort(0, vector.size()-1);
@@ -278,7 +280,7 @@ public class Cliente {
            try {
                vector.set(i, Integer.parseInt(in.readLine()));
            } catch (IOException ex) {
-               Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
+               
            }
         } 
     }
