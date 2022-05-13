@@ -162,7 +162,13 @@ public class Servidor {
                     ordered = true;
                     //stop();
                 } else {
-                System.out.println(input);
+                    if ("vv".equals(input)){
+                        RecibirV(vec);
+                        ImprimirV(vec);
+                    } else {
+                      System.out.println(input);  
+                    }
+                
                 }
             }
                 } else {

@@ -31,14 +31,14 @@ public class Cliente {
             clientSocket = new Socket(address, port);
             out = new PrintWriter(clientSocket.getOutputStream(), true);
             in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+            Operacion();
         } catch (Exception e) {
-            
+            System.out.println("Failure"); 
         }
     }
     
     public void Operacion(){
         try {
-            
             vector = new ArrayList<Integer>();
             String tam = in.readLine();
             int tamaño = Integer.parseInt(tam);
@@ -47,7 +47,6 @@ public class Cliente {
             }
             int opcion = Integer.parseInt(in.readLine());
             int pivote = Integer.parseInt(in.readLine());
-            System.out.println("Connection Succesful");
             long startTime = System.nanoTime();      
             if(opcion == 1){
                 Mergesort(0, vector.size()-1);
@@ -66,9 +65,10 @@ public class Cliente {
             sendMessage(".");
             sendMessage(Long.toString(estimatedTime));
             EnviarV(vector);
+            System.out.println("Succesful");
             stop();
         } catch (Exception e){
-            System.out.println("Connection Failure");
+            System.out.println("Failure");
         }
         
     }
@@ -97,6 +97,9 @@ public class Cliente {
               sendMessage("Confirmed");
          sendMessage("Replacing the value at position " + k + " to " + vec2[i]);
           sendMessage("Succesful");
+          sendMessage("The array is now as follows: ");
+         sendMessage("vv");
+         EnviarV(vector);
           sendMessage("");
           vector.set(k, vec2[i]);
           }
@@ -109,6 +112,9 @@ public class Cliente {
           sendMessage("Confirmed");
           sendMessage("Replacing the value at position " + k + " to " + vec2[j]);
           sendMessage("Succesful");
+          sendMessage("The array is now as follows: ");
+         sendMessage("vv");
+         EnviarV(vector);
           sendMessage(""); 
           }
           
@@ -123,6 +129,9 @@ public class Cliente {
       sendMessage("Confirmed");
           sendMessage("Replacing the value at position " + k + " to " + vec2[i]);
           sendMessage("Succesful");
+          sendMessage("The array is now as follows: ");
+         sendMessage("vv");
+         EnviarV(vector);
           sendMessage("");  
        }
       k++;
@@ -162,6 +171,9 @@ public class Cliente {
         sendMessage("Confirmed");
          sendMessage("Swapping the value at positions " + a + " and " + mayor);
           sendMessage("Succesful");
+          sendMessage("The array is now as follows: ");
+         sendMessage("vv");
+         EnviarV(vector);
           sendMessage("");
         Heapify(tam, mayor);
     }  
@@ -188,6 +200,9 @@ public class Cliente {
          sendMessage("Confirmed");
          sendMessage("Swapping the value at positions " + i + " and " + j);
           sendMessage("Succesful");
+          sendMessage("The array is now as follows: ");
+         sendMessage("vv");
+         EnviarV(vector);
           sendMessage("");
      }
    }
@@ -198,6 +213,9 @@ public class Cliente {
       sendMessage("Confirmed");
          sendMessage("Swapping the value at position " + izq + " and " +  j);
           sendMessage("Succesful");
+          sendMessage("The array is now as follows: ");
+         sendMessage("vv");
+         EnviarV(vector);
           sendMessage(""); 
   }
      
@@ -231,6 +249,9 @@ public class Cliente {
          sendMessage("Confirmed");
          sendMessage("Swapping the value at positions " + i + " and " + j);
           sendMessage("Succesful");
+          sendMessage("The array is now as follows: ");
+         sendMessage("vv");
+         EnviarV(vector);
           sendMessage("");
      }
    }
@@ -240,6 +261,9 @@ public class Cliente {
       sendMessage("Confirmed");
          sendMessage("Swapping the value at position " + der + " and " +  j);
           sendMessage("Succesful");
+          sendMessage("The array is now as follows: ");
+         sendMessage("vv");
+         EnviarV(vector);
           sendMessage("");
   }
      
@@ -301,8 +325,7 @@ public class Cliente {
         Scanner sc = new Scanner(System.in);
         System.out.println("Please enter the server's IP address");
         ip = sc.nextLine();
+        System.out.println("Working...");
         c.Connect_to_Server(ip, 5555);
-        System.out.println("Establishing connection...");
-        c.Operacion();
     }
 }
